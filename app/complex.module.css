@@ -1,0 +1,45 @@
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+    height: calc(100vh - 50px);
+    padding-top: 100px;
+}
+
+.generatorContainer {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.options{
+    display: flex;
+    gap: 10px;
+}
+
+.option{
+    display: flex;
+    gap: 5px;
+}
+
+.inputContainer {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.generateButton {
+    border: none;
+    background-color: rgb(103, 103, 255);
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+}
+
+.output {
+    display: flex;
+    justify-content: center;
+}
