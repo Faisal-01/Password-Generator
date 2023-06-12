@@ -18,3 +18,22 @@
 .navigatorButtons:nth-child(1) {
   border-right: 2px solid white;
 }
+/* 
+.getPasswordsContainer{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+} */
+
+.getPasswordsButton{
+  position: absolute;
+  bottom: 50px;
+  right: 100px;
+  border: none;
+    background-color: rgb(103, 103, 255);
+    /* background-color: rgb(140, 140, 255); */
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    
+}

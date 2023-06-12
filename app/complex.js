@@ -1,5 +1,6 @@
 import styles from "./complex.module.css";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Simple() {
   const [length, setLength] = useState(4);
@@ -8,8 +9,11 @@ export default function Simple() {
   const [isCharacters, setIsCharacters] = useState(true);
   const [isSpecial, setIsSpecial] = useState(true);
 
-  const generateHandler = (e) => {
-    e.preventDefault();
+  const [passwordFor, setPasswordFor] = useState("");
+
+
+  const generateHandler = () => {
+   
     setPassword("");
     // const numberOfDigits = 2;
     // const numberOfSpecial 
@@ -131,11 +135,29 @@ export default function Simple() {
     
   };
 
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("http://localhost:3001/api/", {
+        password: password,
+        passwordType: "Complex",
+        for: passwordFor,
+      });
+
+      setPassword("");
+      setPasswordFor("");
+      alert("Saved Successfully");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Complex Password Generator</h1>
 
-      <form className={styles.generatorContainer} onSubmit={generateHandler}>
+      <form className={styles.generatorContainer} onSubmit={submitHandler}>
         <div className={styles.inputContainer}>
           <label htmlFor="length">Enter Length:</label>
 
@@ -185,10 +207,21 @@ export default function Simple() {
           </li>
         </ul>
 
-        <button type="submit" className={styles.generateButton}>
+        <button type="button" onClick={generateHandler} className={styles.button}>
           Generate
         </button>
         <div className={styles.output}>{password}</div>
+
+        {password && (
+          <>
+            <div className={styles.forContainer}>
+              <label htmlFor="for">For:</label>
+
+              <input type="text" id="for" name="for" value={passwordFor} onChange={e => setPasswordFor(e.target.value)}/>
+            </div>
+            <button className={styles.button}>Save</button>
+          </>
+        )}
       </form>
     </div>
   );

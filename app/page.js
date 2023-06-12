@@ -4,6 +4,7 @@ import styles from './page.module.css';
 import { useState } from 'react';
 import Simple from './simple';
 import Complex from './complex';
+import Link from 'next/link';
 
 export default function Page() {
 
@@ -13,6 +14,10 @@ export default function Page() {
     <div className={styles.container}>
       <div className={styles.navigator}>
         <button
+          style={{
+            "background-color":
+              selected === 1 ? "lightgrey" : "rgb(103, 103, 255)",
+          }}
           type="button"
           className={styles.navigatorButtons}
           onClick={() => setSelected(1)}
@@ -20,6 +25,10 @@ export default function Page() {
           Simple
         </button>
         <button
+          style={{
+            "background-color":
+              selected === 2 ? "lightgrey" : "rgb(103, 103, 255)",
+          }}
           type="button"
           className={styles.navigatorButtons}
           onClick={() => setSelected(2)}
@@ -29,6 +38,12 @@ export default function Page() {
       </div>
 
       {selected === 1 ? <Simple /> : <Complex />}
+
+
+          <Link href="/passwords" className={styles.getPasswordsButton}>
+            All Passwords
+          </Link >
+
     </div>
   );
 }
