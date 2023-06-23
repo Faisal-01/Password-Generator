@@ -19,7 +19,6 @@ export default function Passwords() {
   const {push} = useRouter();
 
   const {alert, setAlert} = useAppContext()
-  console.log(alert);
 
   const getPasswords = async () => {
     try {
