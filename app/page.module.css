@@ -15,7 +15,7 @@
   color: white;
 }
 
-.navigatorButtons:nth-child(1) {
+.navigatorButtons:nth-child(n + 1) {
   border-right: 2px solid white;
 }
 /* 

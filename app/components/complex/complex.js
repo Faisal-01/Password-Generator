@@ -2,7 +2,10 @@ import styles from "./complex.module.css";
 import { useState } from "react";
 import axios from "axios";
 
-export default function Simple() {
+import Alert from "../Alert/alert";
+import { useAppContext } from "@/app/context";
+
+export default function Complex() {
   const [length, setLength] = useState(4);
   const [password, setPassword] = useState("");
   const [isDigits, setIsDigits] = useState(true);
@@ -11,6 +14,7 @@ export default function Simple() {
 
   const [passwordFor, setPasswordFor] = useState("");
 
+    const { alert, setAlert } = useAppContext();
 
   const generateHandler = () => {
    
@@ -139,7 +143,7 @@ export default function Simple() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3001/api/", {
+      const response = await axios.post("/api/", {
         password: password,
         passwordType: "Complex",
         for: passwordFor,
@@ -147,7 +151,7 @@ export default function Simple() {
 
       setPassword("");
       setPasswordFor("");
-      alert("Saved Successfully");
+      setAlert({status: true, message: "Saved Successfully"});
     } catch (e) {
       console.log(e);
     }
@@ -207,7 +211,11 @@ export default function Simple() {
           </li>
         </ul>
 
-        <button type="button" onClick={generateHandler} className={styles.button}>
+        <button
+          type="button"
+          onClick={generateHandler}
+          className={styles.button}
+        >
           Generate
         </button>
         <div className={styles.output}>{password}</div>
@@ -217,12 +225,19 @@ export default function Simple() {
             <div className={styles.forContainer}>
               <label htmlFor="for">For:</label>
 
-              <input type="text" id="for" name="for" value={passwordFor} onChange={e => setPasswordFor(e.target.value)}/>
+              <input
+                type="text"
+                id="for"
+                name="for"
+                value={passwordFor}
+                onChange={(e) => setPasswordFor(e.target.value)}
+              />
             </div>
             <button className={styles.button}>Save</button>
           </>
         )}
       </form>
+      {alert.status && <Alert />}
     </div>
   );
 }

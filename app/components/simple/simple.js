@@ -1,12 +1,16 @@
 import styles from './simple.module.css';
 import { useState } from 'react';
 import axios from 'axios';
+import Alert from '../Alert/alert';
+import { useAppContext } from '@/app/context';
 
 export default function Simple() {
 
     const [length, setLength] = useState(4);
     const [password, setPassword] = useState("");
     const [passwordFor, setPasswordFor] = useState("");
+
+    const {alert, setAlert} = useAppContext();
 
     const generateHandler = () => {
         // e.preventDefault()
@@ -33,7 +37,7 @@ export default function Simple() {
         e.preventDefault();
 
         try{
-            const response = await axios.post("http://localhost:3001/api/", {
+            const response = await axios.post("/api/", {
                 password: password,
                 passwordType: "Simple",
                 for: passwordFor
@@ -42,7 +46,10 @@ export default function Simple() {
 
             setPassword("")
             setPasswordFor("")
-            alert("Saved Successfully")
+            setAlert({
+              status: true,
+              message: "Saved Successfully",
+            });
         }catch(e){
             console.log(e);
         }
@@ -83,6 +90,7 @@ export default function Simple() {
           </>
         )}
       </form>
+      {alert.status && <Alert />}
     </div>
   );
 }

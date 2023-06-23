@@ -1,0 +1,12 @@
+.container{
+    width: max-content;
+    height: 50px;
+    position: absolute;
+    top: 70px;
+    right: 40px;
+    background-color: blue;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
