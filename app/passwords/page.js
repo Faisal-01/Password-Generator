@@ -31,6 +31,8 @@ export default function Passwords() {
 
   const copyHandler = (password) => {
     navigator.clipboard.writeText(password);
+    setAlert({ status: true, message: "Copied Successfully" });
+
   }
 
   const backHandler = () => {
