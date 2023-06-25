@@ -25,7 +25,6 @@ export default async function handler(req, res) {
           { _id: req.query.id },
           { $push: { passwordsList: password._id } }
         );
-        console.log(user)
         res.status(200).json({ success: true, message: "Password added successfully" });
       } catch (error) {
         res.status(500).json({ success: false });

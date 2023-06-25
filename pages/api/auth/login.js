@@ -12,7 +12,6 @@ export default async function handler(req, res) {
     
       try {
         const user = await User.findOne({ email: req.body.email });
-        console.log(user)
         if(!user){
             res.status(400).json({ success: false, message: "User not found" })
             return;

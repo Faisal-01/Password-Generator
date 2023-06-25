@@ -2,7 +2,7 @@
 
 import styles from './login.module.css';
 import { useAppContext } from '../context';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import Alert from '../components/Alert/alert';
 import axios from 'axios';
 import {useRouter} from 'next/navigation';
@@ -30,6 +30,8 @@ export default function Login() {
       localStorage.setItem("user", response.data.userID);
     }
     catch(e){
+      setAlert({ status: true, message: e.response.data.message });
+
       console.log(e);
     }
     }
