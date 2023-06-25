@@ -1,5 +1,5 @@
 import connect from "@/db/connection";
-import Password from "@/models/password";
+import User from "@/models/user";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -8,15 +8,15 @@ export default async function handler(req, res) {
 
   switch (method) {
     
-    case "DELETE":
-
+    case "POST":
       try {
-        const password = await Password.findByIdAndDelete(req.query.id);
-        res.status(200).json({ success: true, message: "Password Deleted Successfully" });
+        const user = await User.create(req.body);
+        res.status(200).json({ success: true, message: "User created successfully" });
       } catch (error) {
         res.status(400).json({ success: false });
       }
       break;
+
     default:
       res.status(400).json({ success: false });
       break;

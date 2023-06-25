@@ -8,28 +8,44 @@
     padding-top: 100px;
 }
 
-.generatorContainer {
-    padding-top: 50px;
+.loginContainer {
+    margin-top: 50px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 50px;
-}
-
-.options{
-    display: flex;
-    gap: 10px;
-}
-
-.option{
-    display: flex;
-    gap: 5px;
+    background-color: white;
+    align-items: center;
+    width: 550px;
 }
 
 .inputContainer {
     display: flex;
     gap: 10px;
-    justify-content: center;
-    align-items: center;
+    /* align-items: center; */
+    /* justify-content: center; */
+    flex-direction: column;
+    width: 100%;
+}
+
+.inputContainer input {
+    width: 70%;
+}
+
+.inputContainer label {
+    width: 30%;
+}
+
+.nameContainer {
+    display: flex;
+}
+
+.emailContainer {
+    display: flex;
+}
+
+.passwordContainer {
+    display: flex;
 }
 
 .container label {
@@ -41,27 +57,25 @@
     font-size: 20px;
     border-radius: 10px;
     border: 1px solid grey;
-    
 }
 
 .button {
     border: none;
     background-color: rgb(103, 103, 255);
+    /* background-color: rgb(140, 140, 255); */
     padding: 10px;
     font-size: 18px;
     color: white;
     cursor: pointer;
 }
 
-.output {
+.loginTextContainer {
+    width: 100%;
     display: flex;
-    justify-content: center;
-    font-size: 30px;
+    justify-content: right;
+
 }
 
-.forContainer {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
+.loginTextContainer>a {
+    color: grey;
 }

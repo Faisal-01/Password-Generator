@@ -21,9 +21,10 @@ export default function Passwords() {
   const {alert, setAlert} = useAppContext()
 
   const getPasswords = async () => {
+    const userId = localStorage.getItem("user");
     try {
-      const response = await axios.get("/api/");
-      setPasswords(response.data);
+      const response = await axios.get(`/api/user/${userId}`);
+      setPasswords(response.data.passwords);
     } catch (error) {
       console.log(error)
     }
@@ -39,9 +40,10 @@ export default function Passwords() {
   }
 
   const deleteHandler = async (id) => {
+    const userId = localStorage.getItem("user");
     
     try {
-      const response = await axios.delete(`/api/${id}`);
+      const response = await axios.patch(`/api/password/${id}`, {userId});
       setAlert({status: true, message: response.data.message});
       getPasswords()
     } catch (error) {
@@ -50,15 +52,22 @@ export default function Passwords() {
   }
 
   useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (!user) {
+      push("/login");
+    }
+  }, []);
+
+  useEffect(() => {
     getPasswords();
-  }, [passwords.length])
+  }, [passwords?.length])
 
   return (
     <div className={styles.container}>
       <button className={styles.backContainer} onClick={backHandler}><ArrowBackIosIcon className={styles.backIcon}/><p>Back</p></button>
       <h1 className={styles.title}>Passwords</h1>
 
-      <ul className={styles.passwords}>
+      {passwords?.length > 0 ? <ul className={styles.passwords}>
         <li className={styles.password}>
           <p className={styles.header}>Password</p>
           <p className={styles.header}>Type</p>
@@ -85,7 +94,7 @@ export default function Passwords() {
             </li>
           );
         })}
-      </ul>
+      </ul> : <p className={styles.noPasswords}>No passwords yet</p>}
       {alert.status && <Alert />}
     </div>
   );

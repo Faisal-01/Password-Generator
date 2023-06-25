@@ -7,9 +7,13 @@ export default function Alert() {
     const {alert, setAlert} = useAppContext();
 
     useEffect(() => {
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
             setAlert({status: false, message: ""});
         }, 2000)
+
+        return () => {
+          clearTimeout(timeout);
+        }
     
     })
   return (

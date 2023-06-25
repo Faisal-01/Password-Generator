@@ -1,19 +1,40 @@
 "use client";
 
 import styles from './page.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Simple from './components/simple/simple';
 import Complex from './components/complex/complex';
 import Link from 'next/link';
 import CheckPassowrd from './components/Check Password/checkPassowrd';
+import LogoutIcon from "@mui/icons-material/Logout";
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
 
   const [selected, setSelected] = useState(1);
 
+  const {push} = useRouter()
+
+  const logoutHandler = () => {
+    localStorage.removeItem("user");
+    push("/login")
+  }
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (!user) {
+      push("/login")
+    }
+  
+  }, [])
+
   return (
 
       <div className={styles.container}>
+        <div className={styles.iconContainer} onClick={logoutHandler}>
+
+        <LogoutIcon className={styles.logoutIcon}/>
+        </div>
         <div className={styles.navigator}>
           <button
             style={{

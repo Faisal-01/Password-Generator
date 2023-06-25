@@ -13,6 +13,7 @@
   border: none;
   background-color: rgb(103, 103, 255);
   color: white;
+  cursor: pointer;
 }
 
 .navigatorButtons:nth-child(n + 1) {
@@ -35,5 +36,20 @@
     padding: 10px 20px;
     font-size: 18px;
     color: white;
+    cursor: pointer;
     
+}
+
+.iconContainer{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  padding: 5px;
+  
+}
+
+.logoutIcon{
+  cursor: pointer;
+  font-size: 30px;
+  color: rgb(103, 103, 255);
 }

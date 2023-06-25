@@ -35,9 +35,10 @@ export default function Simple() {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        const userId = localStorage.getItem("user");
 
         try{
-            const response = await axios.post("/api/", {
+            const response = await axios.post(`/api/user/${userId}`, {
                 password: password,
                 passwordType: "Simple",
                 for: passwordFor
